@@ -3,7 +3,6 @@
 namespace Arimolzer\IPStackFinder\Tests;
 
 use Arimolzer\IPStackFinder\Facade\IPFinder;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Class FacadeTest
