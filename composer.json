@@ -49,7 +49,7 @@
                 "Arimolzer\\IPStackFinder\\IPStackFinderServiceProvider"
             ],
             "aliases": {
-                "IPStackFinder": "Arimolzer\\IPStackFinder\\IPStackFinderFacade"
+                "IPFinder": "Arimolzer\\IPStackFinder\\IPStackFinderFacade"
             }
         }
     }
