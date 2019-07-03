@@ -2,7 +2,6 @@
 
 namespace Arimolzer\IPStackFinder\Facade;
 
-use Arimolzer\IPStackFinder\IPStackFinder;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -16,6 +15,6 @@ class IPStackFinderFacade extends Facade
      */
     protected static function getFacadeAccessor() : string
     {
-        return IPStackFinder::class;
+        return 'IPFinder';
     }
 }

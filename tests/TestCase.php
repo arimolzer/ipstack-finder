@@ -2,6 +2,8 @@
 
 namespace Arimolzer\IPStackFinder\Tests;
 
+use Arimolzer\IPStackFinder\Facade\IPStackFinderFacade;
+use Arimolzer\IPStackFinder\IPStackFinderServiceProvider;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
 
 /**
@@ -35,7 +37,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        // make sure, our .env file is loaded
+        // Load the .env file
         $app->useEnvironmentPath(__DIR__.'/..');
         $app->bootstrapWith([LoadEnvironmentVariables::class]);
         parent::getEnvironmentSetUp($app);
