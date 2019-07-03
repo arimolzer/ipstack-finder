@@ -15,7 +15,9 @@ You can install the package via composer:
 composer require arimolzer/ipstack-finder
 ```
 
-The package will be immediately available thanks to Laravel auto discovery
+The package will be immediately available thanks to Laravel auto discovery.
+
+## Configuration
 
 Before making any requests however, you'll need to provide an [ipstack.com](https://ipstack.com) API key. You can sign up for a free key [on their website](https://ipstack.com/product). 
 
