@@ -2,8 +2,6 @@
 
 namespace Arimolzer\IPStackFinder\Tests;
 
-use Arimolzer\IPStackFinder\Facade\IPFinder;
-
 /**
  * Class FacadeTest
  * @package Arimolzer\IPStackFinder\Tests

@@ -2,7 +2,6 @@
 
 namespace Arimolzer\IPStackFinder;
 
-use Arimolzer\IPStackFinder\Helpers\IPStackHelper;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -32,8 +31,8 @@ class IPStackFinderServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ipstack-finder');
 
         // Register the main class to use with the facade
-        $this->app->bind('IPFinder', function () {
-            return new IPStackHelper;
+        $this->app->singleton(IPStackFinder::class, function () {
+            return new IPStackFinder;
         });
     }
 }
