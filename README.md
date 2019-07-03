@@ -1,11 +1,11 @@
-# Very short description of the package
+# A laravel facade for the ipstack.com API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/arimolzer/ipstack-finder.svg?style=flat-square)](https://packagist.org/packages/arimolzer/ipstack-finder)
 [![Build Status](https://img.shields.io/travis/arimolzer/ipstack-finder/master.svg?style=flat-square)](https://travis-ci.org/arimolzer/ipstack-finder)
 [![Quality Score](https://img.shields.io/scrutinizer/g/arimolzer/ipstack-finder.svg?style=flat-square)](https://scrutinizer-ci.com/g/arimolzer/ipstack-finder)
 [![Total Downloads](https://img.shields.io/packagist/dt/arimolzer/ipstack-finder.svg?style=flat-square)](https://packagist.org/packages/arimolzer/ipstack-finder)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This Laravel 5.8 package provides a simple to use facade to request data from the [ipstack.com](https://ipstack.com) geolocation API. 
 
 ## Installation
 
@@ -15,11 +15,29 @@ You can install the package via composer:
 composer require arimolzer/ipstack-finder
 ```
 
+The package will be immediately available thanks to Laravel auto discovery
+
+Before making any requests however, you'll need to provide an [ipstack.com](https://ipstack.com) API key. You can sign up for a free key [on their website](https://ipstack.com/product). 
+
+The best way to set the API key is by assigning the `IPSTACK_API_KEY` environmental variable in your `.env` file. Alternatively, you can publish the packages config file to your application and edit the  it directly.
+
+Optionally, you can also set a `IPSTACK_DEFAULT_LANGUAGE` environmental variable, which will update the default response language. For language options, see the [API documentation](https://ipstack.com/documentation#language).
+
+If you would like to publish the config files, run the below artisan command:
+```bash
+php artisan vendor:publish --provider="Arimolzer\IPStackFinder\IPStackFinderServiceProvider"
+```
+
 ## Usage
 
+Once the package is installed, you can call the facade by using the IPFinder facade:
+
 ``` php
-// Usage description here
+/** @var array $data */
+$data = IPFinder::get('8.8.8.8');
 ```
+
+Currently the only available method is `IPFinder::get(string $ip)`. 
 
 ### Testing
 
