@@ -23,7 +23,7 @@ class FacadeTest extends TestCase
         $this->assertNotNull(config('ipstack-finder.api_key'));
 
         // Check if you are getting a success response from the API
-        $this->assertNotFalse($data['success']);
+        $this->assertFalse(isset($data['success']));
         $this->assertNotNull($data['ip']);
     }
 }
