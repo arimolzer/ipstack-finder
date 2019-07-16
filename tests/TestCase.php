@@ -2,8 +2,6 @@
 
 namespace Arimolzer\IPStackFinder\Tests;
 
-use Arimolzer\IPStackFinder\Facade\IPStackFinderFacade;
-use Arimolzer\IPStackFinder\IPStackFinderServiceProvider;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
 
 /**

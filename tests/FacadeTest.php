@@ -20,10 +20,11 @@ class FacadeTest extends TestCase
         $data = IPStackFinderFacade::get('8.8.8.8');
 
         // Test an API key has been configured
-        $this->assertNotNull(config('ipstack-finder.api_key'));
+        $this->assertNotNull(config('ipstack-finder'), "No config");
+        $this->assertNotNull(config('ipstack-finder.api_key'), "Couldn't Load .env");
 
         // Check if you are getting a success response from the API
-        $this->assertFalse(isset($data['success']));
-        $this->assertNotNull($data['ip']);
+        $this->assertFalse(isset($data['success']), "ipstack.com has returned a failure response.");
+        $this->assertNotNull($data['ip'], "ipstack.com has returned an unexpected result.");
     }
 }
