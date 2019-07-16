@@ -1,16 +1,15 @@
 language: php
-
 php:
-  - 7.1
-  - 7.2
-  - 7.3
-
+- 7.1
+- 7.2
+- 7.3
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
-
+- travis_retry composer self-update
+- travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-
+- vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 after_script:
-  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+- php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+notifications:
+  slack:
+    secure: WyozeYE8mQBFDwN/vLDmXoOSBO65ft8SYcFMNEFBOfPGbRi5SxFp4AKZQYO1s0pErwj50dRKxzeOrS3SK2vTme9Ar2dnIp/rfltU4zC3QX9gpgH2jG7LHAGQquP9x0MsF+RMVFJP2CTX49qX7dB3ziuz6IfrueBtu5zYZyX3H2jhsdmlCH5JvX32cyhtYi9jfq6tJXW6tlX7kCtGI23YvzXtXJv1mHtFlCe94E14gjMU6zNzOl6Uij28tqoTekBa1k2wYEfFi6IdyK+hhkMAhYXHy33Mknyy8ZMDtkZE0S5mGSLqoOyhEpk1jzK3FHxK651B8EzAIHVqF/jCzKgnYCuIfD+PUABTsEW1m1LWf5ys2JVLelQZ59e4dYevD+jkR+pVrbKDMIcWIwZSracWo0mmBAJ+zlUPLmXYAc4BgmUjEjY0CD3FRYHTCReJbVEhWAXHv4HFKcp4ezYljhHUYBO+T6lAKbeKs6JXJH/x7HVJcQEpEG3CCftpK9S4lFZ/+euC2+CJWQe2O3PbNM0zaCxRPu1bKM9bB5vfxCMZoa4z+P2qQZIGYqUDq/QuIzRWh0IxA57qhfY0vII5tFuZ3QCe4zX8qtDzAQ5jaA6xcBcaJprGVVngwej5q65K4hlqQGSXOpUrdJZj0hcqYd7KiDd+c9bbusPJF1yOM5I13Dg=
