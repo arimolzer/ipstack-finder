@@ -2,6 +2,7 @@
 
 namespace Arimolzer\IPStackFinder\Tests;
 
+use Arimolzer\IPStackFinder\IPStackFinderServiceProvider;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
 
 /**
@@ -16,7 +17,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function getPackageProviders($app)
     {
-        return ['Arimolzer\IPStackFinder\IPStackFinderServiceProvider'];
+        return [IPStackFinderServiceProvider::class];
     }
 
     /**
