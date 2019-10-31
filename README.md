@@ -36,10 +36,10 @@ Once the package is installed, you can call the facade by using the IPFinder fac
 
 ``` php
 /** @var array $data */
-$data = IPFinder::get('8.8.8.8');
+$data = IPStackFinderFacade::get('8.8.8.8');
 ```
 
-Currently the only available method is `IPFinder::get(string $ip)`. 
+Currently the only available method is `IPStackFinderFacade::get(string $ip)`. 
 
 ### Testing
 
