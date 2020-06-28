@@ -2,7 +2,14 @@
 
 namespace Arimolzer\IPStackFinder\Tests;
 
+use Arimolzer\IPStackFinder\Exceptions\InvalidConfiguration;
 use Arimolzer\IPStackFinder\Facade\IPStackFinderFacade;
+use Arimolzer\IPStackFinder\IPStackFinder;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
+use Mockery;
+use GuzzleHttp\Psr7;
+
 
 /**
  * Class FacadeTest
@@ -10,25 +17,34 @@ use Arimolzer\IPStackFinder\Facade\IPStackFinderFacade;
  */
 class FacadeTest extends TestCase
 {
-    /** @test */
-    public function testConfigValues(): void
+    protected $client;
+    protected $ipStackFinder;
+
+    public function setUp(): void
     {
-        // Test an API key has been configured
-        $this->assertNotNull(config('ipstack-finder'), "No config");
-        $this->assertNotNull(config('ipstack-finder.api_key'), "Couldn't Load .env");
+        parent::setUp();
+
+        $this->client = Mockery::mock(Client::class);
+        $this->ipStackFinder = new IPStackFinder($this->client);
     }
 
     /** @test */
-    public function testFacade(): void
+    public function itWillThrowAnExceptionIfApiKeyIsNotSet(): void
     {
-        /**
-         * Lets make a request to ipstack using Googles public DNS IP
-         * @var array $data
-         */
-        $data = IPStackFinderFacade::get('8.8.8.8');
+        config(['ipstack-finder.api_key' => '']);
+        $this->expectException(InvalidConfiguration::class);
+        IPStackFinderFacade::get('8.8.8.8');
+    }
 
-        // Check if you are getting a success response from the API
-        $this->assertFalse(isset($data['success']), "ipstack.com has returned a failure response.");
+    /** @test */
+    public function testItCanFetchResponseSuccessfullyFromIpStack(): void
+    {
+        // simulate successful client request to ip stack
+        $stream = Psr7\stream_for('{"ip" : "8.8.8.8"}');
+        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
+        $this->client->shouldReceive('request')->withArgs(['GET','8.8.8.8'])->andReturn($response);
+
+        $data = $this->ipStackFinder->get('8.8.8.8');
         $this->assertNotNull($data['ip'], "ipstack.com has returned an unexpected result.");
     }
 }
