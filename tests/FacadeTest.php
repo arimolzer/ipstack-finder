@@ -7,9 +7,8 @@ use Arimolzer\IPStackFinder\Facade\IPStackFinderFacade;
 use Arimolzer\IPStackFinder\IPStackFinder;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Mockery;
-use GuzzleHttp\Psr7;
-
 
 /**
  * Class FacadeTest
@@ -40,7 +39,7 @@ class FacadeTest extends TestCase
     public function testItCanFetchResponseSuccessfullyFromIpStack(): void
     {
         // simulate successful client request to ip stack
-        $stream = Psr7\stream_for('{"ip" : "8.8.8.8"}');
+        $stream = Utils::streamFor('{"ip" : "8.8.8.8"}');
         $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
         $this->client->shouldReceive('request')->withArgs(['GET','8.8.8.8'])->andReturn($response);
 
